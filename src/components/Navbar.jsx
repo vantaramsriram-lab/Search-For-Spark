@@ -62,7 +62,7 @@ export default function Navbar() {
               <button
                 key={l.target}
                 onClick={() => goToSection(l.target)}
-                className="group relative font-mono text-[11px] uppercase tracking-widest2 text-mute hover:text-paper transition-colors duration-300"
+                className="group relative font-mono text-base uppercase tracking-widest2 text-mute hover:text-paper transition-colors duration-300"
                 data-cursor="hover"
               >
                 {l.label}

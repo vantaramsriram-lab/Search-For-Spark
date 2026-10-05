@@ -54,9 +54,9 @@ export default function Hero() {
           SPARK // TALENT HUNT 2026
         </span>
       </Fade>
-      <Fade delay={0.2} className="absolute top-20 sm:top-24 right-5 sm:right-8 lg:right-12 text-right">
+      {/* <Fade delay={0.2} className="absolute top-20 sm:top-24 right-5 sm:right-8 lg:right-12 text-right">
         <span className="mono-tag text-dim">FIRST-YEAR BATCH // OPEN CALL</span>
-      </Fade>
+      </Fade> */}
       <Fade delay={0.35} className="absolute bottom-6 left-5 sm:left-8 lg:left-12 hidden md:block">
         <span className="mono-tag text-dim">SYS // RECRUIT.PROTOCOL_v1</span>
       </Fade>

@@ -15,6 +15,19 @@ export default function About() {
         <SectionLabel index="01" label="THE SEARCH" />
 
         <div className="mt-14 sm:mt-20 grid lg:grid-cols-12 gap-12 lg:gap-8">
+
+          {/* poster */}
+          <div className="lg:col-span-7 flex items-center justify-center">
+            <Reveal>
+              <div className="relative w-full max-w-[520px] overflow-hidden border border-line bg-panel">
+                <img
+                  src="/poster.jpeg"
+                  alt="SPARK Recruitment Poster"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </Reveal>
+          </div>
           {/* statement */}
           <div className="lg:col-span-7">
             <h2 className="font-display font-bold uppercase leading-[0.95] tracking-tight text-[clamp(2.2rem,6vw,5.2rem)]">
