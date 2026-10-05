@@ -1,0 +1,193 @@
+/* ── SPARK // self-hosted type ─────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/space-grotesk-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/fonts/space-grotesk-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/space-grotesk-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/inter-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/inter-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/fonts/inter-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/jetbrains-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/jetbrains-mono-500.woff2') format('woff2');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── base ──────────────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    @apply bg-ink;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-ink text-paper font-sans antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: #1557ff;
+    color: #f5f5f2;
+  }
+  :focus-visible {
+    outline: 1px solid #3d78ff;
+    outline-offset: 3px;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #05060a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1b2130;
+    border: 2px solid #05060a;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1557ff;
+  }
+}
+
+/* ── engineered utilities ──────────────────────────────────────────────── */
+
+@layer utilities {
+  .mono-tag {
+    @apply font-mono text-[10px] sm:text-[11px] uppercase tracking-widest2 text-mute;
+  }
+  .mono-tag-blue {
+    @apply font-mono text-[10px] sm:text-[11px] uppercase tracking-widest2 text-voltbright;
+  }
+  .outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(245, 245, 242, 0.34);
+  }
+  .bg-grid-tech {
+    background-image: linear-gradient(to right, rgba(245, 245, 242, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(245, 245, 242, 0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+  .logo-blend {
+    mix-blend-mode: screen;
+  }
+}
+
+/* film grain — barely there */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* custom cursor — native cursor hidden only when the custom one is live */
+html.cursor-live,
+html.cursor-live * {
+  cursor: none !important;
+}
+
+/* marquee */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee-x 36s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* status dot */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot {
+    animation: none;
+  }
+}
+
+/* inputs — strip native chrome */
+input,
+textarea,
+select {
+  border-radius: 0;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #0a0d14 inset;
+  -webkit-text-fill-color: #f5f5f2;
+  caret-color: #f5f5f2;
+  transition: background-color 9999s ease-in-out 0s;
+}
