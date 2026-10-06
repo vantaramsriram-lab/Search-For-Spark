@@ -18,7 +18,7 @@ export default function StepIdentity({ fields, setField, errors }) {
         value={fields.scholar}
         onChange={(e) => setField('scholar', e.target.value)}
         error={errors.scholar}
-        placeholder="e.g. 0264CS241001"
+        placeholder="26U020001"
         hint="As on your college records."
       />
       <InputField
@@ -27,7 +27,7 @@ export default function StepIdentity({ fields, setField, errors }) {
         value={fields.whatsapp}
         onChange={(e) => setField('whatsapp', e.target.value)}
         error={errors.whatsapp}
-        placeholder="10-digit mobile"
+        placeholder="9848XXXXXX"
         type="tel"
         inputMode="tel"
         autoComplete="tel"
@@ -38,7 +38,7 @@ export default function StepIdentity({ fields, setField, errors }) {
         value={fields.email}
         onChange={(e) => setField('email', e.target.value)}
         error={errors.email}
-        placeholder="you@example.com"
+        placeholder="joe@gmail.com"
         type="email"
         autoComplete="email"
       />
