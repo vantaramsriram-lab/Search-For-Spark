@@ -12,7 +12,7 @@ export default function Footer() {
               <Logo className="h-28 sm:h-36 w-auto" />
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mono-tag mt-6">PROGRAMMING × ROBOTICS × TECHNOLOGY</p>
+              <p className="mono-tag mt-6">PROGRAMMING × AUTOMATION × KNOWLEDGE</p>
             </Reveal>
           </div>
 

@@ -104,9 +104,9 @@ export default function Hero() {
                 <span aria-hidden="true" className="absolute -bottom-px -right-px w-3 h-3 border-b border-r border-volt" />
                 <Logo className="w-44 sm:w-56 lg:w-64 h-auto" />
                 <div className="mt-5 pt-4 border-t border-line flex items-center justify-between">
-                  <span className="mono-tag">PROGRAMMING</span>
-                  <span className="mono-tag text-voltbright">ROBOTICS</span>
-                  <span className="mono-tag">TECHNOLOGY</span>
+                  <span className="mono-tag">PROGRAMMING |</span>
+                  <span className="mono-tag text-voltbright"> AUTOMATION |</span>
+                  <span className="mono-tag"> KNOWLEDGE</span>
                 </div>
               </div>
             </Fade>
