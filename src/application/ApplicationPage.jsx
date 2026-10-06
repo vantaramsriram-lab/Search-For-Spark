@@ -12,7 +12,7 @@ import StepExperience from './steps/StepExperience';
 import { useSelection } from '../context/SelectionContext';
 import { STEP_META } from '../utils/constants';
 import { validateIdentity, validateAcademics, validateDomains, validateExperience } from '../utils/validators';
-
+import api from '../api.js';
 const EASE = [0.22, 1, 0.36, 1];
 
 const STEP_TITLES = {
@@ -109,24 +109,29 @@ export default function ApplicationPage() {
     setSubmitting(true);
     setServerError(null);
     try {
-      const res = await fetch('/api/applications', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...fields, domains: selected }),
+      const res = await api.post("/applications", {
+        ...fields,
+        domains: selected,
       });
-      const data = await res.json().catch(() => ({}));
-      if (res.status === 201) {
-        setDoneId(data.applicationId);
-      } else if (res.status === 409) {
-        setServerError(data.error || 'An application has already been submitted using these details.');
-      } else if (res.status === 422) {
-        setErrors(data.errors || {});
-        setServerError('Check the highlighted fields.');
+
+      setDoneId(res.data.applicationId);
+    } catch (error) {
+      const status = error.response?.status;
+      const data = error.response?.data;
+
+      if (status === 409) {
+        setServerError(
+          data?.error ||
+          "An application has already been submitted using these details."
+        );
+      } else if (status === 422) {
+        setErrors(data?.errors || {});
+        setServerError("Check the highlighted fields.");
       } else {
-        setServerError('Something went wrong on our end. Try again in a minute.');
+        setServerError(
+          "Something went wrong on our end. Try again in a minute."
+        );
       }
-    } catch {
-      setServerError('Network error — check your connection and try again.');
     } finally {
       setSubmitting(false);
     }
@@ -176,13 +181,12 @@ export default function ApplicationPage() {
                     <button
                       onClick={() => state === 'done' && goTo(n, -1)}
                       disabled={state !== 'done'}
-                      className={`w-full text-left flex items-baseline gap-4 px-4 py-3 border-l transition-colors duration-300 ${
-                        state === 'current'
-                          ? 'border-volt bg-panel text-paper'
-                          : state === 'done'
-                            ? 'border-line text-mute hover:text-paper hover:bg-panel/60'
-                            : 'border-linefaint text-dim'
-                      }`}
+                      className={`w-full text-left flex items-baseline gap-4 px-4 py-3 border-l transition-colors duration-300 ${state === 'current'
+                        ? 'border-volt bg-panel text-paper'
+                        : state === 'done'
+                          ? 'border-line text-mute hover:text-paper hover:bg-panel/60'
+                          : 'border-linefaint text-dim'
+                        }`}
                     >
                       <span className={`font-mono text-[11px] ${state === 'current' ? 'text-voltbright' : ''}`}>{s.num}</span>
                       <span className="font-display font-semibold uppercase tracking-tight text-sm">{s.title}</span>

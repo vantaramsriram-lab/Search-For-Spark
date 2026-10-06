@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import helmet from 'helmet';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -23,6 +24,13 @@ app.use(
 );
 app.set('trust proxy', 1);
 app.use(express.json({ limit: '20kb' }));
+
+// Allow requests from the Vercel frontend
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  })
+);
 
 // API — credentials never leave the server
 app.use('/api', applicationsRouter);
