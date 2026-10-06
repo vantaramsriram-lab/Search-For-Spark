@@ -5,7 +5,7 @@ import Reveal from '../components/Reveal';
 const PILLARS = [
   { name: 'LOGIC.', note: 'How you break a problem down.' },
   { name: 'CURIOSITY.', note: 'What you can’t stop wondering about.' },
-  { name: 'EXECUTION.', note: 'Finishing > planning. Ship something.' },
+  { name: 'EXECUTION.', note: 'Finishing > Planning. Ship something.' },
 ];
 
 export default function About() {
